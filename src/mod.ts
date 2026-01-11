@@ -45,40 +45,6 @@ const createServer = async () => {
   const server = new McpServer({
     name: "jmap",
     version: deno.version,
-    capabilities: {
-      tools: {},
-    },
-    instructions:
-      `This is a JMAP (JSON Meta Application Protocol) MCP server that provides comprehensive email management capabilities through JMAP-compliant email servers.
-
-**Available Tools:**
-
-**Email Search & Retrieval:**
-- \`search_emails\`: Search emails with filters (text queries, sender/recipient, date ranges, keywords, mailbox filtering). Supports pagination.
-- \`get_emails\`: Retrieve specific emails by ID with full details including headers, body, and attachments.
-- \`get_threads\`: Get email conversation threads by ID.
-
-**Mailbox Management:**
-- \`get_mailboxes\`: List mailboxes/folders with hierarchy support and pagination.
-
-**Email Actions (when not read-only):**
-- \`mark_emails\`: Mark emails as read/unread or flagged/unflagged.
-- \`move_emails\`: Move emails between mailboxes.
-- \`delete_emails\`: Delete emails permanently (irreversible).
-
-**Email Composition (when not read-only or submission capabilities are not supported):**
-- \`send_email\`: Compose and send new emails with support for plain text, HTML, CC/BCC recipients.
-- \`reply_to_email\`: Reply to existing emails with reply-all support and proper threading.
-
-**Usage Guidelines:**
-- All tools use pagination - use \`position\` parameter for large result sets
-- Email search supports complex filters including keywords like '$seen', '$flagged', '$draft'
-- Thread operations maintain conversation context and proper email references
-- Send/reply operations require either textBody or htmlBody (or both)
-- Date filters use ISO 8601 format (e.g., '2024-01-15T10:00:00Z')
-
-**JMAP Compatibility:**
-Works with any JMAP-compliant email server including Cyrus IMAP, Stalwart Mail Server, FastMail, and Apache James. The server automatically detects capabilities and adapts functionality accordingly.`,
   });
 
   const config = getJMAPConfig();
